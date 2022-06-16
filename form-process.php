@@ -2,48 +2,50 @@
 
 $errorMSG = "";
 
-// NAME
 if (empty($_POST["name"])) {
-    $errorMSG = "Name is required ";
+    $errorMSG = "Veuillez renseigner votre nom ";
 } else {
     $name = $_POST["name"];
 }
 
-// EMAIL
 if (empty($_POST["email"])) {
-    $errorMSG .= "Email is required ";
+    $errorMSG .= "Veuillez renseigner une adresse e-mail ";
 } else {
     $email = $_POST["email"];
 }
 
-// MSG SUBJECT
+if (empty($_POST["phoneNum"])) {
+    $errorMSG .= "Veuillez renseigner un numéro de téléphone ";
+} else {
+    $email = $_POST["phoneNum"];
+}
+
 if (empty($_POST["msg_subject"])) {
-    $errorMSG .= "Subject is required ";
+    $errorMSG .= "Veuillez renseigner le sujet de votre message ";
 } else {
     $msg_subject = $_POST["msg_subject"];
 }
 
 
-// MESSAGE
 if (empty($_POST["message"])) {
-    $errorMSG .= "Message is required ";
+    $errorMSG .= "Veuillez écrire votre demande ";
 } else {
     $message = $_POST["message"];
 }
 
 //Add your email here
-$EmailTo = "hello@example.com";
-$Subject = "New Message Received";
+$EmailTo = "jappstore01@gmail.com";
+$Subject = "Nouveau Message Reçu";
 
 // prepare email body text
 $Body = "";
-$Body .= "Name: ";
+$Body .= "Nom: ";
 $Body .= $name;
 $Body .= "\n";
-$Body .= "Email: ";
+$Body .= "E-mail: ";
 $Body .= $email;
 $Body .= "\n";
-$Body .= "Subject: ";
+$Body .= "Sujet: ";
 $Body .= $msg_subject;
 $Body .= "\n";
 $Body .= "Message: ";
@@ -51,14 +53,14 @@ $Body .= $message;
 $Body .= "\n";
 
 // send email
-$success = mail($EmailTo, $Subject, $Body, "From:".$email);
+$success = mail($EmailTo, $Subject, $Body, "De:".$email);
 
 // redirect to success page
 if ($success && $errorMSG == ""){
-   echo "success";
+   echo "Réussi !";
 }else{
     if($errorMSG == ""){
-        echo "Something went wrong :(";
+        echo "Quelque chose s'est mal passé... :(";
     } else {
         echo $errorMSG;
     }
